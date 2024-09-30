@@ -102,7 +102,8 @@ The *relative size* of confidence intervals, depends only on the size of the sup
 not on the accuracy of the classifier; i.e., for a CI $$(\theta_-, \theta_+)$$ around a
 measurement $$\widehat \theta$$, its relative size is $$(\theta_+ - \theta_-) / \widehat
 \theta$$. We see in the plot above that the relative size of the CIs does not depend on
-the absolute accuracy of the classifier and is only a function of the dataset support.[^2]
+the absolute accuracy of the classifier and is only a function of the dataset
+support.[^2]
 
 ### Comparing classifiers
 
@@ -121,9 +122,9 @@ second classifier is indeed better than the first one.
 
 ### Independent sampling
 
-How do we arrive at a confidence interval for $$\Delta \mathrm{Acc}$$. We know how to 
-compute confidence intervals for $$\mathrm{Acc}_1$$ and $$\mathrm{Acc}_2$$ via bootstrapping,
-so we could follow a similar process.
+How do we arrive at a confidence interval for $$\Delta \mathrm{Acc}$$. We know how to
+compute confidence intervals for $$\mathrm{Acc}_1$$ and $$\mathrm{Acc}_2$$ via
+bootstrapping, so we could follow a similar process.
 
 ![Independent boostrapping]({{
 '/assets/images/2024/09/independent_bootstrap.jpeg' | relative_url }})
@@ -223,9 +224,9 @@ would not have been able to make with independent bootstrap sampling.
 Another way of looking at the difference between joint and independent sampling is to
 consider the minimal detectable change in classifier accuracy. We fix the dataset size
 at $$n=1,000$$ and consider a baseline classifier with accuracy of 60%, 70%, 80% and 90%
-respectively. We ask the following question: How accuracte does a second classifier have
+respectively. We ask the following question: How accurate does a second classifier have
 to be, for us to determine with 95% significance that it is better than the baseline
-classifier.
+classifier?
 
 ![Minimal detectable change by base accuracy]({{
 '/assets/images/2024/09/minimal_detectable_change.png' | relative_url }})
