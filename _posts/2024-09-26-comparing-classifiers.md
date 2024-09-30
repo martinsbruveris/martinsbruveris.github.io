@@ -47,10 +47,10 @@ the following:
 - From our dataset $$\mathbf{x} = (x_1, \ldots, x_n)$$, we sample with replacement a new
   dataset $$\mathbf{x'} = (x'_1, \ldots, x'_n)$$ of the same size and we compute the
   metric $$m(\mathbf{x}')$$ on the sampled dataset;
-- We repeat the process $$N$$ times (usually $$N=1,\!000$$) and obtain 1,000 measurements 
-  of the metric $$(m_1, \ldots, m_N)$$;
-- The 95%-CI for $$m(\mathbf{x})$$ is given by the 2.5%- and 97.5%-quantiles of the set of
-  bootstrapped measurements $$\mathbf{x'} = (x'_1, \ldots, x'_n)$$.
+- We repeat the process $$N$$ times (usually $$N=1,\!000$$) and obtain $$N$$
+  measurements of the metric $$(m_1, \ldots, m_N)$$;
+- The 95%-CI for $$m(\mathbf{x})$$ is given by the 2.5%- and 97.5%-quantiles of the set
+  of bootstrapped measurements $$\mathbf{x'} = (x'_1, \ldots, x'_n)$$.
 
 The beauty of this procedure is that while we will apply it to the accuracy or the
 difference of two accuracies, it can be applied without change to any metric $$m$$
@@ -59,8 +59,8 @@ necessary.[^1]
 
 ### Confidence interval width
 
-Before we look at comparing classifiers, we should take a look at the factors influecing
-the width of confidence intervals. There are two main factors:
+Before we look at comparing classifiers, we should take a look at the factors
+influencing the width of confidence intervals. There are two main factors:
 
 - Acuracy of the classifier and
 - Size of the dataset. 
@@ -191,7 +191,7 @@ $$
 \mathrm{Acc}_2(\mathbf{x}') - \mathrm{Acc}_1(\mathbf{x}')\,.
 $$
 
-Another way of looking at it is that we treat $$\Delta\mathrm{Acc}(\mathrm{x}$$ as a
+Another way of looking at it is that we treat $$\Delta\mathrm{Acc}(\mathrm{x})$$ as a
 single function of the dataset, regardless of the fact that internally it relies on the
 predictions of two classifiers. 
 
