@@ -5,6 +5,7 @@ twitter_username: BruverisMartins
 baseurl: "/"
 description: Blog about AI and deep learning
 profile_url: "https://martinsbruveris.com"
+timezone: Europe/London
 
 # Build settings
 markdown: kramdown
