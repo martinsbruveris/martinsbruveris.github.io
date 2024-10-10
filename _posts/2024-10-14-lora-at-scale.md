@@ -141,11 +141,10 @@ GPUs are scarce, even on AWS.
 
 ### Enter LoRA
 
-[... add LoRA link ...]
-
-Low-Rank Adaptation (LoRA) is a parameter-efficient fine-tuning method. The idea of LoRA
-is as follows: when fine-tuning a model, instead of learning all parameters of a weight
-matrix directly, we only learn low-rank updates to the matrix as follows. 
+[Low-Rank Adaptation](https://arxiv.org/abs/2106.09685) (LoRA) is a parameter-efficient
+fine-tuning method. The idea of LoRA is as follows: when fine-tuning a model, instead of
+learning all parameters of a weight matrix directly, we only learn low-rank updates to
+the matrix as follows. 
 
 ![LoRA architecture]({{
 'assets/images/2024/10/lora/lora.jpg' | relative_url }})
@@ -206,9 +205,32 @@ eliminated the GPU bottleneck from our system.
 ### LoRA in practice
 
 The practical implementation of LoRA is made easy using the PeFT library, short for
-Parameter-efficient Fine-Tuning) together with the Transformers library.
+Parameter-efficient Fine-Tuning) together with the Transformers library. Adapting a model
+for LoRA training can be as simple as
 
-[… insert code example with sample model …]
+```python
+import peft, timm
+
+model = timm.create_model("convnext_base", nu)
+config = peft.LoraConfig(
+    r=4,
+    target_modules=r".*\.conv_dw|.*\.mlp\.fc\d",
+    modules_to_save = ["head.fc"],
+)
+peft_model = peft.get_peft_model(model, config)
+```
+
+We use a regex to select, which layers should be targeted by LoRA training. In this case
+we target all depthwise convolutional and all fully connected layers. We also perform
+a full fine-tuning on the classification head.
+
+```
+>>> peft_model.print_trainable_parameters()
+trainable params: 4,341,770 || all params: 91,918,484 || trainable%: 4.7235
+```
+
+These choices result in a model that has only 4.7% of the traininable parameters of
+the full model.
 
 After implementing LoRA training and training a first model, we may find that the
 accuracy of the LoRA model does not quite reach the level of a fully fine-tuned model.
