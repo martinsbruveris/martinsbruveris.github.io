@@ -229,7 +229,7 @@ a full fine-tuning on the classification head.
 trainable params: 4,341,770 || all params: 91,918,484 || trainable%: 4.7235
 ```
 
-These choices result in a model that has only 4.7% of the traininable parameters of
+These choices result in a model that has only 4.7% of the trainable parameters of
 the full model.
 
 After implementing LoRA training and training a first model, we may find that the
@@ -241,10 +241,11 @@ In other words, it might be time for some hyper-parameter tuning.
   by adapting all linear layers and then tune $$r$$ to get the desired
   accuracy/adapter size trade-off.
 - The original LoRA paper includes a scaling parameter alpha, which acts on the update
-  matrices via $$h = (W + \frac\alpha r AB)x$$. Empirically, $$\alpha=2r$$,
-  appears to be a good choice, but Sebastian Raschka has found that sometime tuning
-  alpha can improve performance.
-- We have observed that training a LoRA adapter requires about twice the number ofepochs
+  matrices via $$h = (W + \frac\alpha r AB)x$$. Empirically, $$\alpha=2r$$, appears to
+  be a good choice, but Sebastian Raschka has
+  [found](https://magazine.sebastianraschka.com/p/practical-tips-for-finetuning-llms)
+  that sometime tuning alpha can improve performance.
+- We have observed that training a LoRA adapter requires about twice the number of epochs
   compared to regular fine-tuning to achieve the same accuracy. More recently, [Hayou et
   al.](https://arxiv.org/abs/2402.12354) have applied theoretical insights on large
   width networks to show that by using different learning rates for the $$A$$ and $$B$$
@@ -258,8 +259,8 @@ In other words, it might be time for some hyper-parameter tuning.
 VeRA and LoRA-XS
 {:.image-caption}
 
-For example, VeRa, freezes the matrices $$A$$ and $$B$$ after random
-initialization and shares them across layers. Instead VeRA only trains diagonal scaling
+For example, VeRA, freezes the matrices $$A$$ and $$B$$ after random
+initialization and shares them across layers. Instead, VeRA only trains diagonal scaling
 matrices $$\Lambda_d$$ and $$Lambda_b$$.
 
 LoRA-XS follows the same idea, but instead of initializing $$A$$ and $$B$$
